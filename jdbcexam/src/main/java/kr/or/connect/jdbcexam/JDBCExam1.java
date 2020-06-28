@@ -1,0 +1,45 @@
+package kr.or.connect.jdbcexam;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.connect.jdbcexam.dao.RoleDao;
+import kr.or.connect.jdbcexam.dto.Role;
+
+public class JDBCExam1 {
+
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+		RoleDao dao=new RoleDao();
+		Role role=dao.getRole(100);
+		System.out.println(role);
+		
+		int roleId=501;
+		String description="CTO";
+		role=new Role(roleId, description);
+		dao=new RoleDao();
+		int insertCount=dao.addRole(role);
+		System.out.println(insertCount);
+		
+		dao=new RoleDao();
+		List<Role> list=dao.getRoles();
+		for(Role role3:list) {
+			System.out.println(role3);
+		}
+		
+		
+		role=new Role(roleId);
+		dao=new RoleDao();
+		int deleteCount=dao.deleteDao(role);
+		System.out.println(deleteCount);
+		
+		roleId=201;
+		description="Manager";
+		role=new Role(roleId, description);
+		dao=new RoleDao();
+		int updateCount=dao.updateDao(role);
+		System.out.println(updateCount);
+
+	}
+
+}
